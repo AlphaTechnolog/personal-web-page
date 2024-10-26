@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/Navbar.astro";
+
 interface Props {
 	title: string;
 }
@@ -16,7 +18,17 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="font-inter text-base text-black bg-white antialiased font-feature-default">
-		<slot />
+	<body class="font-inter text-base text-black bg-white antialiased font-feature-default scroll-smooth">
+		<Navbar />
+		<main class="mt-12">
+			<slot />
+		</main>
 	</body>
 </html>
+
+<style>
+	body {
+		@apply font-inter text-base text-black antialiased font-feature-default scroll-smooth;
+		@apply bg-gradient-to-br from-indigo-100/80 to-white bg-no-repeat bg-center bg-cover h-[100vh];
+	}
+</style>

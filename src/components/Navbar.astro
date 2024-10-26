@@ -1,0 +1,242 @@
+---
+import CaretUp from "./icons/CaretUp.astro";
+---
+
+<script>
+  const scrollTriggers = document.querySelectorAll("#scroll-trigger") as NodeListOf<HTMLButtonElement>;
+  const gotoUpButton = document.getElementById("goto-start-button") as HTMLButtonElement;
+
+  // setup scroll triggers so when clicked they will scroll
+  for (const scrollTrigger of scrollTriggers) {
+    scrollTrigger.addEventListener("click", () => {
+      const id = scrollTrigger.dataset.scrollTo ?? "element";
+      const element = document.getElementById(id);
+
+      if (!element) {
+        throw new Error("Invalid dom element selected by id " + id);
+      }
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
+  }
+
+  // setup goto up button so it can be clicked to go to the top.
+  gotoUpButton.addEventListener("click", () => {
+    // document.body.scrollIntoView({
+    //   behavior: "smooth",
+    //   block: "start",
+    // });
+
+    window.scroll({
+      behavior: "smooth",
+      top: 0,
+      left: 0,
+    });
+  });
+
+  /**
+   * Clears every active state in the links.
+   * @param triggers buttons to for through.
+   */
+  const clearActiveStates = () => {
+    Array.from(scrollTriggers)
+      .filter((trigger: HTMLButtonElement) => trigger.classList.contains("active"))
+      .forEach((trigger: HTMLButtonElement) => trigger.classList.remove("active"));
+  }
+
+  /**
+   * Sets a given id as the active link.
+   * @param triggers buttons to for through.
+   * @param activeId the new id to set as active.
+   */
+  const updateActiveStates = (triggers: typeof scrollTriggers, activeId: string) => {
+    const classname = "active";
+    
+    // remove active class from others triggers and add it to the right one
+    for (const trigger of triggers) {
+      const scrollTo = trigger.dataset.scrollTo ?? "undefined";
+      const isActive = scrollTo === activeId;
+      const containsClass = trigger.classList.contains(classname);
+
+      if (!isActive && containsClass) {
+        trigger.classList.remove(classname);
+        continue;
+      }
+      
+      if (isActive && !containsClass) {
+        trigger.classList.add(classname);
+      }
+    }
+  }
+
+  /**
+   * This will build ranges for every targeted section in the page and
+   * tryna update the links states (active or inactive) depending on if
+   * the user has already scrolled enough in each section.
+   */
+  const updateLinkStateViaRanges = () => {
+    const { innerHeight: viewportHeight, scrollY } = window;
+
+    type Range = {
+      domElement: HTMLElement;
+      y: number;
+    };
+
+    // ranges is an array of the position (centered relatively to the screen) of every
+    // triggered dom element by the scroll-trigger buttons, it will also store the
+    // dom element that the pixels belongs to.
+    const ranges: Range[] = Array.from(scrollTriggers).map((trigger: HTMLButtonElement) => {
+      const id = trigger.dataset.scrollTo ?? "undefined";
+      const domElement = document.getElementById(id);
+
+      if (!domElement) throw new Error("Invalid dom element by id " + id);
+
+      const rect = domElement.getBoundingClientRect();
+
+      // returns the position of the element centered vertically relatively to the
+      // viewport height and the scrolled pixels.
+      const y = rect.y + scrollY - (viewportHeight - rect.height) / 2;
+
+      return { y, domElement };
+    });
+
+    // here we check for which is the active one by seeing if the window.scrollY
+    // value is within one of the ranges.
+    ranges.forEach((range: Range, index: number) => {
+      // if we're the first one and scrollY is < than the first range, we'll just stop here.
+      if (index === 0 && scrollY < range.y) {
+        return clearActiveStates();
+      }
+
+      // if we're the last one, just check if at least we're within the range with no one.
+      if (index >= ranges.length - 1 && scrollY >= range.y - 10) {
+        return updateActiveStates(scrollTriggers, range.domElement.id);
+      }
+
+      // are we within the range of this element and the next one?
+      if (scrollY >= range.y && scrollY <= ranges[index + 1].y) {
+        return updateActiveStates(scrollTriggers, range.domElement.id);
+      }
+    })
+  }
+
+  /**
+   * Adds the scrolled class to the navbar when needed.
+   */
+  const updateNavAppearance = () => {
+    const { scrollY } = window;
+    const nav = document.querySelector("nav#navbar");
+    const scrolledClass = "scrolled-nav";
+
+    if (!nav) {
+      throw new Error("Cannot select navbar!");
+    }
+
+    const containsClass = nav.classList.contains(scrolledClass);
+    const userScrolled = scrollY >= 10;
+
+    if (userScrolled && !containsClass) {
+      nav.classList.add(scrolledClass);
+    } else if (!userScrolled && containsClass) {
+      nav.classList.remove(scrolledClass);
+    }
+  }
+
+  /**
+   * Shows a floating button when the user scrolled enough, this button
+   * will scroll to the top of the page.
+   */
+  const updateFloatingButtonState = () => {
+    const { scrollY } = window;
+
+    const scrolledEnough = scrollY >= 20;
+    const fabButton = document.getElementById("goto-start-button");
+
+    if (!fabButton) {
+      throw new Error("Cannot get element by id `goto-start-button`");
+    }
+
+    const showClassname = "shown";
+    const isShown = fabButton.classList.contains(showClassname);
+
+    if (scrolledEnough && !isShown) {
+      fabButton.classList.add(showClassname);
+    } else if (!scrolledEnough && isShown) {
+      fabButton.classList.remove(showClassname);
+    }
+  }
+
+  // subscribe active states to page scroll
+  window.addEventListener("scroll", () => {
+    updateLinkStateViaRanges();
+    updateNavAppearance();
+    updateFloatingButtonState();
+  });
+</script>
+
+<nav class="w-full fixed top-0 py-2 transition-all duration-300" id="navbar">
+  <div class="flex justify-between items-center px-[5%]">
+    <h3 class="font-semibold">
+      AlphaTechnolog
+    </h3>
+  
+    <ul class="nav-list" id="nav-list">
+      <li>
+        <button id="scroll-trigger" data-scroll-to="projects">
+          Projects
+        </button>
+      </li>
+      <li>
+        <button id="scroll-trigger" data-scroll-to="aboutme">
+          About me
+        </button>
+      </li>
+      <li>
+        <button id="scroll-trigger" data-scroll-to="contact">
+          Contact
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<button id="goto-start-button" class="goto-start-button">
+  <CaretUp />
+</button>
+
+<style scoped>
+nav.scrolled-nav {
+  @apply shadow-md backdrop-blur-md;
+}
+
+.nav-list {
+  @apply flex justify-center items-center gap-x-4;
+  @apply transition-all duration-300 text-sm;
+}
+
+.nav-list li {
+  @apply list-none;
+}
+
+.nav-list li button {
+  @apply transition-all duration-300 border-b-2 border-solid;
+  @apply border-transparent rounded-b-sm py-1;
+}
+
+.nav-list li button.active {
+  @apply border-indigo-400;
+}
+
+.goto-start-button {
+  @apply transition-all duration-300 fixed bottom-2 right-2 p-3;
+  @apply opacity-0 bg-transparent text-transparent rounded-full;
+}
+
+.goto-start-button.shown {
+  @apply opacity-100 text-black bg-indigo-400;
+  @apply hover:bg-indigo-300 cursor-pointer;
+}
+</style>
