@@ -1,0 +1,31 @@
+---
+import UserCheck from "../icons/UserCheck.astro"
+
+const bornYear = 2007;
+const curYear = new Date().getFullYear();
+const yearsOld = curYear - bornYear;
+---
+
+<div id="aboutme-checkpoint" class="mt-12"></div>
+
+<div class="px-5 md:px-[15%]">
+  <h3 class="text-4xl font-semibold flex justify-start items-center gap-x-3">
+    <UserCheck size={34} />
+    About me
+  </h3>
+
+  <div class="[&>p]:mb-4 mt-6">
+    <p>
+      My name is Franklin Gabriel, but I am known online as AlphaTechnolog. I began learning programming at the age of 10 and am currently {yearsOld} years old. I am passionate about full-stack web application development, with a particular interest in backend development and cloud related tools. However, I also consider myself proficient in systems programming, with experience in certain low levels languages such as C, Zig, Rust...
+    </p>
+    <p>
+      Many of my projects aim to solve everyday problems or explore various topics with the goal of expanding my skill set, as I believe that knowledge is best acquired through hands-on experimentation.
+    </p>
+    <p>
+      I am an active member of the open-source community, having contributed to several projects, including recently a project called Cartero, a free and open-source alternative to Postman written in Rust and GTK. I have also created open-source projects that have fostered communities of contributors, such as Decay, a color theme that has been distributed across various applications and projects.
+    </p>
+    <p>
+      Currently, I am also venturing into game development, exploring new challenges and expanding my skill set in this exciting field.
+    </p>
+  </div>
+</div>
