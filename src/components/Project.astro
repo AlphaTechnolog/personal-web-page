@@ -15,7 +15,7 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<div class="w-full grid grid-cols-2 gap-x-4">
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-x-4">
   <div class="rounded-md">
     <Image src={project.src.default} alt="banner" />
   </div>
