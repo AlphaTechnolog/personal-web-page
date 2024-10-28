@@ -1,3 +1,9 @@
+---
+import Envelope from "../icons/Envelope.astro"
+import GitHubLogo from "../icons/GitHubLogo.astro"
+import LinkedinLogo from "../icons/LinkedinLogo.astro"
+---
+
 <div class="flex flex-col-reverse md:flex-row justify-end md:justify-between items-start w-full h-[90vh] px-[15%] gap-y-10 md:gap-y-0 pt-32 md:pt-0">
   <div class="w-full md:w-[50%] text-center md:h-full flex justify-center items-center md:items-start flex-col gap-y-3">
     <h1 class="text-4xl md:text-5xl text-center md:text-left font-semibold">
@@ -10,18 +16,27 @@
         AlphaTechnolog
       </a>
     </h1>
-    <a
-      href="mailto:gfranklings@gmail.com"
-      class="mt-2 bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-400/80 transition-all py-2 px-3 rounded-md text-white text-sm"
-    >
-      Contact me!
-    </a>
+    <div class="flex justify-center items-center gap-x-4 mt-2">
+      <a
+        href="mailto:gfranklings@gmail.com"
+        class="bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-400/80 transition-all py-2 px-3 rounded-md text-white text-sm flex justify-center items-center gap-x-2"
+      >
+        <Envelope size={18} />
+        Contact me!
+      </a>
+      <a href="https://github.com/alphatechnolog/" target="_blank">
+        <GitHubLogo size={18} />
+      </a>
+      <a href="https://www.linkedin.com/in/franklin-gabriel-guerra-salazar-420111280/" target="_blank">
+        <LinkedinLogo size={18} />
+      </a>
+    </div>
   </div>
   <div class="w-full md:w-[50%] md:h-full justify-center items-center flex">
     <img
       src="https://github.com/alphatechnolog.png"
       alt="github-pfp"
-      class="w-40 h-40 md:w-80 md:h-80 rounded-full"
+      class="w-40 h-40 md:w-80 md:h-80 rounded-full transition-all"
     />
   </div>
 </div>

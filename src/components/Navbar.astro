@@ -25,11 +25,6 @@ import CaretUp from "./icons/CaretUp.astro";
 
   // setup goto up button so it can be clicked to go to the top.
   gotoUpButton.addEventListener("click", () => {
-    // document.body.scrollIntoView({
-    //   behavior: "smooth",
-    //   block: "start",
-    // });
-
     window.scroll({
       behavior: "smooth",
       top: 0,
@@ -204,7 +199,7 @@ import CaretUp from "./icons/CaretUp.astro";
 </nav>
 
 <button id="goto-start-button" class="goto-start-button">
-  <CaretUp />
+  <CaretUp size={18} />
 </button>
 
 <style scoped>

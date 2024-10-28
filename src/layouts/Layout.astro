@@ -18,7 +18,7 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="font-inter text-base text-black bg-white antialiased font-feature-default scroll-smooth">
+	<body>
 		<Navbar />
 		<main class="mt-12">
 			<slot />
@@ -29,6 +29,6 @@ const { title } = Astro.props;
 <style>
 	body {
 		@apply font-inter text-base text-black antialiased font-feature-default scroll-smooth;
-		@apply bg-gradient-to-br from-indigo-100 to-white bg-no-repeat bg-center bg-cover h-full;
+		@apply bg-gradient-to-br from-indigo-100/80 to-white bg-no-repeat bg-center bg-cover h-full;
 	}
 </style>

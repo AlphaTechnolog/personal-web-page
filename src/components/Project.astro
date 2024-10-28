@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import { type Project as IProject, type Project, type Technology, Scheme } from "./sections/types.d";
+import GitHubLogo from "./icons/GitHubLogo.astro";
+
+interface Props {
+  project: IProject,
+}
+
+const { project } = Astro.props;
+---
+
+<div class="w-full grid grid-cols-2 gap-x-4">
+  <div class="rounded-md">
+    <Image src={project.src.default} alt="banner" />
+  </div>
+  <div class="py-[10%]">
+    <h2 class="text-3xl font-semibold text-left">
+      {project.name} - {project.simpleDescription}
+    </h2>
+    <div class="flex justify-start items-center gap-x-2 mt-3">
+      {project.technologies.map((tech: Technology) => (
+        <div class="base-chip" style={{
+          backgroundColor: tech.color,
+          color: (tech.scheme ?? Scheme.light) == Scheme.light ? "black" : "white",
+        }}>
+          <p>{tech.name}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-4 leading-6">
+      {project.description}
+    </p>
+    <div class="mt-4">
+      <button class="base-detail-button">
+        <GitHubLogo size={20} />
+        Code
+      </button>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .base-chip {
+    @apply rounded-full text-xs py-1 px-3;
+    @apply flex justify-center items-center gap-x-2;
+  }
+
+  .base-detail-button {
+    @apply bg-indigo-100 border border-solid border-indigo-200 rounded-lg py-2 px-3;
+    @apply hover:bg-indigo-100/80 active:bg-indigo-100/60 transition duration-300;
+    @apply flex justify-center items-center gap-x-1 text-sm;
+  }
+</style>
