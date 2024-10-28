@@ -3,6 +3,21 @@ import Code from "../icons/Code.astro"
 import Project from "../Project.astro";
 import { type Project as IProject, type Technology, Scheme } from "./types.d";
 
+const c: Technology = {
+  name: "C",
+  color: "#6099C9",
+}
+
+const javascript: Technology = {
+  name: "JavaScript",
+  color: "#F7E854"
+}
+
+const vue: Technology = {
+  name: "Vue",
+  color: "#42B782",
+}
+
 const zig: Technology = {
   name: "Zig",
   color: "#EAA217",
@@ -12,6 +27,11 @@ const gtk: Technology = {
   name: "Gtk",
   color: "#000000",
   scheme: Scheme.dark,
+}
+
+const tailwind: Technology = {
+  name: "Tailwind CSS",
+  color: "#0D97D6"
 }
 
 const projects: IProject[] = [
@@ -25,6 +45,28 @@ const projects: IProject[] = [
       zig,
       gtk,
     ],
+  },
+  {
+    src: await import("../../assets/projects/file-explorer.png"),
+    name: "File explorer",
+    simpleDescription: "C89 + JS based file explorer",
+    description: "Desktop file explorer for Linux and MacOS made in the c programming language using the c89 stdlib. Using the webview library to make a frontend in fully vanilla javascript with tailwind and html",
+    code: "https://github.com/AlphaTechnolog/file-explorer",
+    technologies: [
+      c,
+      javascript,
+      tailwind,
+    ],
+  },
+  {
+    src: await import("../../assets/projects/vbox-manager.png"),
+    name: "VBox Manager",
+    description: "Provides a simple web-based solution for remote virtualbox machines management of a server in your lan",
+    code: "https://github.com/AlphaTechnolog/vbox-manager-api",
+    technologies: [
+      vue,
+      zig
+    ]
   }
 ];
 ---

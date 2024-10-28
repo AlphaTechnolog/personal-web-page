@@ -12,7 +12,7 @@ export interface Technology {
 export interface Project {
   src: typeof import("*.png"),
   name: string;
-  simpleDescription: string;
+  simpleDescription?: string;
   technologies: Technology[];
   description: string;
   code: string;

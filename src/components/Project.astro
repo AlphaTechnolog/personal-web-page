@@ -1,10 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import { type Project as IProject, type Project, type Technology, Scheme } from "./sections/types.d";
+import {
+  type Project as IProject,
+  type Project,
+  type Technology,
+  Scheme,
+} from "./sections/types.d";
 import GitHubLogo from "./icons/GitHubLogo.astro";
 
 interface Props {
-  project: IProject,
+  project: IProject;
 }
 
 const { project } = Astro.props;
@@ -16,26 +21,39 @@ const { project } = Astro.props;
   </div>
   <div class="py-[10%]">
     <h2 class="text-3xl font-semibold text-left">
-      {project.name} - {project.simpleDescription}
+      {project.name}
+      {
+        Boolean(project.simpleDescription) && (
+          <span>- {project.simpleDescription}</span>
+        )
+      }
     </h2>
     <div class="flex justify-start items-center gap-x-2 mt-3">
-      {project.technologies.map((tech: Technology) => (
-        <div class="base-chip" style={{
-          backgroundColor: tech.color,
-          color: (tech.scheme ?? Scheme.light) == Scheme.light ? "black" : "white",
-        }}>
-          <p>{tech.name}</p>
-        </div>
-      ))}
+      {
+        project.technologies.map((tech: Technology) => (
+          <div
+            class="base-chip"
+            style={{
+              backgroundColor: tech.color,
+              color:
+                (tech.scheme ?? Scheme.light) == Scheme.light
+                  ? "black"
+                  : "white",
+            }}
+          >
+            <p>{tech.name}</p>
+          </div>
+        ))
+      }
     </div>
     <p class="mt-4 leading-6">
       {project.description}
     </p>
-    <div class="mt-4">
-      <button class="base-detail-button">
-        <GitHubLogo size={20} />
+    <div class="mt-4 flex justify-start items-center">
+      <a href={project.code} class="base-detail-button" target="_blank">
+        <GitHubLogo size={18} />
         Code
-      </button>
+      </a>
     </div>
   </div>
 </div>
@@ -49,6 +67,6 @@ const { project } = Astro.props;
   .base-detail-button {
     @apply bg-indigo-100 border border-solid border-indigo-200 rounded-lg py-2 px-3;
     @apply hover:bg-indigo-100/80 active:bg-indigo-100/60 transition duration-300;
-    @apply flex justify-center items-center gap-x-1 text-sm;
+    @apply flex justify-center items-center gap-x-1 text-xs;
   }
 </style>
