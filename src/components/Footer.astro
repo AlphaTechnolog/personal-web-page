@@ -2,12 +2,12 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="px-5 md:px-[15%] pb-10 pt-20 flex justify-between items-center">
+<footer class="px-5 md:px-[15%] pb-10 pt-20 flex justify-center md:justify-between items-center">
   <p>
     &copy; {year} AlphaTechnolog. All rights reserved.
   </p>
 
-  <ul class="flex justify-center items-center gap-x-4 [&>li]:list-none">
+  <ul class="hidden md:flex justify-center items-center gap-x-4 [&>li]:list-none">
     <li>
       <button id="scroll-trigger" data-scroll-to="aboutme-checkpoint">
         About me
