@@ -1,9 +1,28 @@
 ---
 import UserCheck from "../icons/UserCheck.astro"
+import TechnologyBadge from "../TechnologyBadge.astro";
+import { type Technology, Scheme } from "./types.d";
+
+import * as techs from "../../data/technologies";
 
 const bornYear = 2007;
 const curYear = new Date().getFullYear();
 const yearsOld = curYear - bornYear;
+
+const favTechs: Technology[] = [
+  techs.c,
+  techs.javascript,
+  techs.vue,
+  techs.nuxtjs,
+  techs.zig,
+  techs.rust,
+  techs.nextjs,
+  techs.react,
+  techs.tailwind,
+  techs.gtk,
+  techs.python,
+  techs.django,
+]
 ---
 
 <div id="aboutme-checkpoint" class="mt-12"></div>
@@ -16,8 +35,18 @@ const yearsOld = curYear - bornYear;
 
   <div class="[&>p]:mb-4 mt-6">
     <p>
-      My name is Franklin Gabriel Guerra, but I am known online as AlphaTechnolog. I began learning programming at the age of 10 and am currently {yearsOld} years old. I am passionate about full-stack web application development, with a particular interest in backend development and cloud related development. However, I also consider myself proficient in systems programming, with experience in certain low levels languages such as C, Zig, Rust...
+      My name is Franklin Gabriel Guerra, but I am known online as AlphaTechnolog. I began learning programming at the age of 10 and am currently {yearsOld} years old. I am passionate about full-stack web application development, but even if I consider myself fullstack, I'm particularly interested mostly in backend development and cloud. However, I also consider myself proficient in systems programming, with some good experience in certain low levels languages.
     </p>
+    <div class="flex flex-col justify-start items-start gap-x-2 mb-4">
+      <p>
+        Some of the technologies I've experience working with are:
+      </p>
+      <div class="flex flex-col md:flex-row justify-center md:justify-center md:items-center items-start gap-x-1 gap-y-2 mt-2">
+        {favTechs.map((tech: Technology) => (
+          <TechnologyBadge tech={tech} />
+        ))}
+      </div>
+    </div>
     <p>
       Many of my projects aim to solve everyday problems or explore various topics with the goal of expanding my skill set, as I believe that knowledge is best acquired through hands-on experimentation.
     </p>

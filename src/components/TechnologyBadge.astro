@@ -1,0 +1,26 @@
+---
+import { type Technology, Scheme } from './sections/types.d';
+
+interface Props {
+  tech: Technology;
+}
+
+const { tech } = Astro.props;
+---
+
+<div
+  class="base-chip"
+  style={{
+    backgroundColor: tech.color,
+    color: (tech.scheme ?? Scheme.light) == Scheme.light ? "black" : "white",
+  }}
+>
+  <p>{tech.name}</p>
+</div>
+
+<style scoped>
+  .base-chip {
+    @apply rounded-full text-xs py-1 px-3;
+    @apply flex justify-center items-center gap-x-2;
+  }
+</style>
