@@ -84,6 +84,12 @@ export const tailwind: Technology = {
   scheme: Scheme.dark,
 }
 
+export const bash: Technology = {
+  name: "Bash",
+  color: "#282A36",
+  scheme: Scheme.dark,
+}
+
 export const php: Technology = {
   name: "PHP",
   color: "#7377ad"
