@@ -12,7 +12,8 @@ export const javascript: Technology = {
 
 export const typescript: Technology = {
   name: "TypeScript",
-  color: "#2f74c0"
+  color: "#2f74c0",
+  scheme: Scheme.dark,
 }
 
 export const csharp: Technology = {
