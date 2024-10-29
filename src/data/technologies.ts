@@ -12,7 +12,8 @@ export const javascript: Technology = {
 
 export const typescript: Technology = {
   name: "TypeScript",
-  color: "#2f74c0"
+  color: "#2f74c0",
+  scheme: Scheme.dark,
 }
 
 export const csharp: Technology = {
@@ -40,6 +41,7 @@ export const zig: Technology = {
 export const rust: Technology = {
   name: "Rust",
   color: "#ef4a00",
+  scheme: Scheme.dark,
 }
 
 export const nextjs: Technology = {
@@ -67,6 +69,7 @@ export const django: Technology = {
 export const python: Technology = {
   name: "Python",
   color: "#3772a0",
+  scheme: Scheme.dark,
 }
 
 export const gtk: Technology = {
@@ -77,7 +80,14 @@ export const gtk: Technology = {
 
 export const tailwind: Technology = {
   name: "Tailwind CSS",
-  color: "#0D97D6"
+  color: "#0D97D6",
+  scheme: Scheme.dark,
+}
+
+export const bash: Technology = {
+  name: "Bash",
+  color: "#282A36",
+  scheme: Scheme.dark,
 }
 
 export const php: Technology = {
@@ -88,6 +98,7 @@ export const php: Technology = {
 export const laravel: Technology = {
   name: "Laravel",
   color: "#f7483f",
+  scheme: Scheme.dark,
 }
 
 export const fastapi: Technology = {
