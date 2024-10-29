@@ -69,6 +69,7 @@ export const django: Technology = {
 export const python: Technology = {
   name: "Python",
   color: "#3772a0",
+  scheme: Scheme.dark,
 }
 
 export const gtk: Technology = {
@@ -79,7 +80,8 @@ export const gtk: Technology = {
 
 export const tailwind: Technology = {
   name: "Tailwind CSS",
-  color: "#0D97D6"
+  color: "#0D97D6",
+  scheme: Scheme.dark,
 }
 
 export const php: Technology = {
