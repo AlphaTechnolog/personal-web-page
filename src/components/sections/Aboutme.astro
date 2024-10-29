@@ -12,6 +12,7 @@ const yearsOld = curYear - bornYear;
 const favTechs: Technology[] = [
   techs.c,
   techs.javascript,
+  techs.typescript,
   techs.vue,
   techs.nuxtjs,
   techs.zig,
@@ -22,6 +23,12 @@ const favTechs: Technology[] = [
   techs.gtk,
   techs.python,
   techs.django,
+  techs.php,
+  techs.laravel,
+  techs.fastapi,
+  techs.bootstrap,
+  techs.csharp,
+  techs.unity,
 ]
 ---
 
@@ -42,7 +49,12 @@ const favTechs: Technology[] = [
         Some of the technologies I've experience working with are:
       </p>
       <div class="flex flex-col md:flex-row justify-center md:justify-center md:items-center items-start gap-x-1 gap-y-2 mt-2">
-        {favTechs.map((tech: Technology) => (
+        {favTechs.slice(0, favTechs.length / 2).map((tech: Technology) => (
+          <TechnologyBadge tech={tech} />
+        ))}
+      </div>
+      <div class="flex flex-col md:flex-row justify-center md:justify-center md:items-center items-start gap-x-1 gap-y-2 mt-2">
+        {favTechs.slice(favTechs.length / 2).map((tech: Technology) => (
           <TechnologyBadge tech={tech} />
         ))}
       </div>
@@ -54,7 +66,7 @@ const favTechs: Technology[] = [
       I am an active member of the open-source community, having contributed to several projects, including recently a project called Cartero, a free and open-source alternative to Postman written in Rust and GTK. I have also created open-source projects that have fostered communities of contributors, such as Decay, a color theme that has been distributed across various applications and projects.
     </p>
     <p>
-      Currently, I am also venturing into game development, exploring new challenges and expanding my skill set in this exciting field.
+      Currently, I am venturing into game development, exploring new challenges and expanding my skill set in this exciting field.
     </p>
   </div>
 </div>

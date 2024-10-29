@@ -10,6 +10,23 @@ export const javascript: Technology = {
   color: "#F7E854"
 }
 
+export const typescript: Technology = {
+  name: "TypeScript",
+  color: "#2f74c0"
+}
+
+export const csharp: Technology = {
+  name: "C#",
+  color: "#964d92",
+  scheme: Scheme.dark,
+}
+
+export const unity: Technology = {
+  name: "Unity",
+  color: "#4a4a4a",
+  scheme: Scheme.dark,
+}
+
 export const vue: Technology = {
   name: "Vue",
   color: "#42B782",
@@ -61,4 +78,25 @@ export const gtk: Technology = {
 export const tailwind: Technology = {
   name: "Tailwind CSS",
   color: "#0D97D6"
+}
+
+export const php: Technology = {
+  name: "PHP",
+  color: "#7377ad"
+}
+
+export const laravel: Technology = {
+  name: "Laravel",
+  color: "#f7483f",
+}
+
+export const fastapi: Technology = {
+  name: "FastAPI",
+  color: "#059487",
+}
+
+export const bootstrap: Technology = {
+  name: "Bootstrap",
+  color: "#6e10ee",
+  scheme: Scheme.dark,
 }
