@@ -40,6 +40,7 @@ export const zig: Technology = {
 export const rust: Technology = {
   name: "Rust",
   color: "#ef4a00",
+  scheme: Scheme.dark,
 }
 
 export const nextjs: Technology = {
@@ -88,6 +89,7 @@ export const php: Technology = {
 export const laravel: Technology = {
   name: "Laravel",
   color: "#f7483f",
+  scheme: Scheme.dark,
 }
 
 export const fastapi: Technology = {
