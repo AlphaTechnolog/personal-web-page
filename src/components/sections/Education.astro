@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import GraduationCap from '../icons/GraduationCap.astro';
+import type { Course } from './types.d';
+import Check from '../icons/Check.astro';
+
+const courses: Course[] = [
+  {
+    imageUrl: 'https://img-b.udemycdn.com/course/240x135/4119364_f59a_6.jpg',
+    name: 'Vue.js: De cero a experto',
+    instructor: 'Fernando Herrera, {d/t} - DevTalles',
+    platform: 'udemy',
+    completed: false,
+    certificatePath: undefined,
+  },
+  {
+    imageUrl: 'https://img-b.udemycdn.com/course/240x135/1284216_eb4d_3.jpg',
+    name: 'Curso de Laravel desde cero + APIs RESTful y webs Angular',
+    instructor: 'Víctor Robles',
+    platform: 'udemy',
+    completed: true,
+    certificatePath: "/assets/certificates/certificado-laravel-y-angular.pdf",
+  },
+];
+---
+
+<div id="education-checkpoint" class="mt-12"></div>
+
+<div class="px-5 md:px-[15%]">
+  <h3 class="text-4xl font-semibold flex justify-start items-center gap-x-3 mb-4">
+    <GraduationCap size={34} />
+    Education
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    {courses.map((course: Course) => (
+      <div class="w-full flex flex-col justify-center items-center gap-y-2 rounded-lg shadow-md">
+        <img src={course.imageUrl} width="100%" alt="course-banner" class="rounded-lg shadow-md" />
+        <div class="pb-4 px-4 pt-1 flex w-full flex-col justify-center items-start gap-y-2">
+          <h3 class="font-bold">
+            {course.name}
+          </h3>
+          <p class="text-slate-500 text-xs">
+            <span class="font-semibold">{course.instructor}</span>
+            on
+            <span class="capitalize font-semibold">{course.platform}</span>
+          </p>
+          {course.completed ? (
+            <div class="flex justify-between items-center gap-y-2 md:gap-0 w-full">
+              <p class="text-xs text-green-600">
+                Completed
+              </p>
+              <a href={course.certificatePath!} target="_blank" class="text-xs text-blue-500 underline">
+                View Certificate
+              </a>
+            </div>
+          ) : (
+            <p class="text-xs text-yellow-600">
+              In progress
+            </p>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

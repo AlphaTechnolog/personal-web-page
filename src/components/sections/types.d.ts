@@ -17,3 +17,12 @@ export interface Project {
   description: string;
   code: string;
 }
+
+export interface Course {
+  imageUrl: string;
+  name: string;
+  instructor: string;
+  platform: 'udemy';
+  completed: boolean;
+  certificatePath?: string;
+}
