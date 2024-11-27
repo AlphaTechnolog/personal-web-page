@@ -95,6 +95,12 @@ export const php: Technology = {
   color: "#7377ad"
 }
 
+export const angular: Technology = {
+  name: "Angular",
+  color: "#ea0b63",
+  scheme: Scheme.dark,
+}
+
 export const laravel: Technology = {
   name: "Laravel",
   color: "#f7483f",
