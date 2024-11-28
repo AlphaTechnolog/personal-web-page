@@ -45,18 +45,27 @@ const courses: Course[] = [
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {courses.map((course: Course) => (
       <div class="w-full flex flex-col justify-center items-center gap-y-2 rounded-lg shadow-md">
-        <img
+        <div
+          class="h-[240px] md:h-[140px] w-full rounded-lg"
+          style={{
+            backgroundImage: `url('${course.imageUrl}')`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+        />
+        {/* <img
           src={course.imageUrl} 
           width="100%"
           height="160px"
           alt="course-banner"
           class="rounded-lg shadow-md"
-        />
+        /> */}
         <div class="pb-4 px-4 pt-1 flex w-full flex-col justify-center items-start gap-y-2">
-          <h3 class="font-bold hidden md:block" title={course.name}>
+          {/* <h3 class="font-bold hidden md:block" title={course.name}>
             {maxText(course.name, MAX_LENGTH)}
-          </h3>
-          <h3 class="block md:hidden font-bold">
+          </h3> */}
+          <h3 class="font-bold leading-[1.5em] h-[1.5em] text-ellipsis w-full overflow-hidden whitespace-nowrap">
             {course.name}
           </h3>
           <p class="text-slate-500 text-xs">
