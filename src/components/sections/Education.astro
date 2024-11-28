@@ -1,14 +1,24 @@
 ---
-import { Image } from 'astro:assets';
 import GraduationCap from '../icons/GraduationCap.astro';
 import type { Course } from './types.d';
-import Check from '../icons/Check.astro';
+
+const MAX_LENGTH = 35;
+
+const maxText = (text: string, maxSize: number): string => {
+  const suffix = '...';
+
+  if (text.length > maxSize - suffix.length) {
+    return text.slice(0, maxSize - suffix.length) + suffix;
+  }
+
+  return text;
+}
 
 const courses: Course[] = [
   {
     imageUrl: 'https://img-b.udemycdn.com/course/240x135/4119364_f59a_6.jpg',
     name: 'Vue.js: De cero a experto',
-    instructor: 'Fernando Herrera, {d/t} - DevTalles',
+    instructor: 'Fernando Herrera',
     platform: 'udemy',
     completed: false,
     certificatePath: undefined,
@@ -35,9 +45,18 @@ const courses: Course[] = [
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {courses.map((course: Course) => (
       <div class="w-full flex flex-col justify-center items-center gap-y-2 rounded-lg shadow-md">
-        <img src={course.imageUrl} width="100%" alt="course-banner" class="rounded-lg shadow-md" />
+        <img
+          src={course.imageUrl} 
+          width="100%"
+          height="160px"
+          alt="course-banner"
+          class="rounded-lg shadow-md"
+        />
         <div class="pb-4 px-4 pt-1 flex w-full flex-col justify-center items-start gap-y-2">
-          <h3 class="font-bold">
+          <h3 class="font-bold hidden md:block" title={course.name}>
+            {maxText(course.name, MAX_LENGTH)}
+          </h3>
+          <h3 class="block md:hidden font-bold">
             {course.name}
           </h3>
           <p class="text-slate-500 text-xs">
